@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+
 namespace FundamentosOK
 {
     internal class Program
@@ -14,7 +16,172 @@ namespace FundamentosOK
             //DiaNacimientoSemana();
             //EjemploBucles();
             //ConjeturaCollatz();
-            NumerosPares();
+            //NumerosPares();
+            //SumarNumeros();
+            //SumarNumerosString();
+            //ValidarISBN();
+            EjemploColecciones();
+        }
+
+        static void EjemploColecciones()
+        {
+            //CREAMOS UNA COLECCION DE int
+            List<int> numeros = new List<int>();
+            //MEDIANTE EL METODO Add PODEMOS AÑADIR ELEMENTOS
+            numeros.Add(99);
+            numeros.Add(445);
+            //AL SER TIPADA LA COLECCION, EL COMPILADOR DETECTA 
+            //ERRORES SI NO AÑADIMOS NUMEROS
+            Console.WriteLine("Elementos de la colección " + numeros.Count);
+            //PODEMOS RECORRER TODOS LOS ELEMENTOS DE LA COLECCION
+            foreach (int num in numeros)
+            {
+                Console.WriteLine(num);
+            }
+
+            //CREAMOS UN ARRAY DE NOMBRES
+            List<string> nombres = new List<string>();
+            nombres.Add("Ana");
+            nombres.Add("Adrian");
+            nombres.Add("Lucia");
+            nombres.Add("Ana");
+            Console.WriteLine("Dame un nombre");
+            string nombre = Console.ReadLine();
+            nombres.Add(nombre);
+            //QUE SUCEDE SI ELIMINAMOS UN ELEMENTO 
+            //COMO OBJETO?
+            //ELIMINA POR LA PRIMERA COINCIDENCIA
+            //nombres.Remove("Ana");
+            //nombres.RemoveAt(3);
+            foreach (string name in nombres)
+            {
+                Console.WriteLine(name);
+            }
+        }
+
+        static void ValidarISBN() {
+            Console.WriteLine("Introduzca número ISBN");
+            string isbn = Console.ReadLine();
+            if (isbn.Length != 10)
+            {
+                Console.WriteLine("El número ISBN debe tener 10 caracteres");
+            }
+            else
+            {
+                int suma = 0;
+                for (int i = 0; i < isbn.Length; i++) {
+                    char caracter = isbn[i];
+                    int numero = int.Parse(caracter.ToString());
+                    int operacion = numero * (i + 1);
+                    suma += operacion;
+                }
+                if (suma % 11 == 0)
+                {
+                    Console.WriteLine("Número ISBN correcto!!!");
+                }
+                else
+                {
+                    Console.WriteLine("Número ISBN incorrecto");
+                }
+            }
+        }
+
+
+        static void SumarNumerosString()
+        {
+            Console.WriteLine("Introduzca un texto con solo números");
+            string texto = Console.ReadLine();
+            int suma = 0;
+            //RECORREMOS TODOS LOS CARACTERES DEL TEXTO
+            for (int i = 0; i < texto.Length; i++)
+            {
+                //RECUPERAMOS CADA CARACTER POR SU POSICION
+                char caracter = texto[i];
+                //CONVERTIRMOS CADA CARACTER '1' A UN NUMERO int
+                //PARA HACERLO, DEBEMOS RECUPERAR EL LITERAL DEL NUMERO "1"
+                int numero = int.Parse(caracter.ToString());
+                suma += numero;
+            }
+            Console.WriteLine("La suma de " + texto + " es " + suma);
+        }
+
+
+//•	Exista @
+//•	Exista un punto
+//•	Exista un punto después de una @
+//•	Que no comience por @ ni punto
+//•	Solamente una @
+//•	Dominio debe ser de 2-4 caracteres
+
+        static void ValidarEmail()
+        {
+            Console.WriteLine("Introduzca un mail válido");
+            string email = Console.ReadLine();
+            if (email.Contains("@") == false)
+            {
+                Console.WriteLine("No existe @");
+            }else if (email.IndexOf(".") == -1)
+            {
+                Console.WriteLine("No existe .");
+            }else if (email.StartsWith("@") || email.EndsWith("@")
+                || email.StartsWith(".") || email.EndsWith("."))
+            {
+                Console.WriteLine("Punto o @ al inicio o al final del mail");
+            }else if (email.LastIndexOf(".") < email.IndexOf("@"))
+            {
+                Console.WriteLine("Debe existir un punto después de la @");
+            }else if (email.IndexOf("@") != email.LastIndexOf("@") )
+            {
+                Console.WriteLine("Existe más de una @");
+            }
+            else
+            {
+                int ultimoPunto = email.LastIndexOf(".");
+                //paco@gmail.com
+                string dominio = email.Substring(ultimoPunto + 1);
+                if (dominio.Length >= 2 && dominio.Length <= 4)
+                {
+                    Console.WriteLine("Email correcto!!!");
+                }
+                else
+                {
+                    Console.WriteLine("El dominio debe ser de 2 a 4 caracteres");
+                }
+            }
+        }
+
+        static void EjemploClases()
+        {
+            DateTime fecha = DateTime.Now;
+            Console.WriteLine(fecha.ToLongDateString());
+            Console.WriteLine(fecha.ToShortDateString());
+            //RECORREMOS TODOS LOS ELEMENTOS DEL CODIGO ASCII
+            for (int i = 0; i <= 255; i++)
+            {
+                //CONVERTIMOS CADA int A CARACTER char
+                char letra = (char)i; //A
+                if (char.IsNumber(letra)) {
+                    Console.WriteLine(letra);
+                }
+            }
+        }
+
+        static void SumarNumeros() {
+            Console.WriteLine("Introduzca un número");
+            string dato = Console.ReadLine();
+            //CONVERTIMOS EL NUMERO A int
+            int numero = int.Parse(dato);
+            //DECLARAMOS UNA VARIABLE suma PARA IR 
+            //ALMACENANDO Y SUMANDO EL RESTO DE NUMEROS
+            int suma = numero;
+            while (numero != 0) {
+                Console.WriteLine("Suma: " + suma);
+                Console.WriteLine("Introduzca otro número");
+                dato = Console.ReadLine();
+                numero = int.Parse(dato);
+                suma += numero;
+            }
+            Console.WriteLine("Fin de programa");
         }
 
         static void NumerosPares()
