@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FundamentosOK.Models;
+using System;
 using System.Collections.Generic;
 
 namespace FundamentosOK
@@ -7,6 +8,14 @@ namespace FundamentosOK
     {
         static void Main(string[] args)
         {
+            Persona persona = new Persona();
+            persona.Nombre = "Maria";
+            persona.Apellido = "De la Hoz";
+            persona.Edad = 28;
+            persona.Nacionalidad = Paises.España;
+            Console.WriteLine("Persona " + persona.Nombre
+                + ", Edad: " + persona.Edad);
+
             Console.WriteLine("Metodo MAIN");
             //METODO PRINCIPAL DE EJECUCION
             //REALIZAMOS LA LLAMADA A LOS METODOS 
@@ -20,7 +29,32 @@ namespace FundamentosOK
             //SumarNumeros();
             //SumarNumerosString();
             //ValidarISBN();
-            EjemploColecciones();
+            //EjemploColecciones();
+            //SumarNumerosColeccion();
+        }
+
+        static void SumarNumerosColeccion()
+        {
+            List<int> numeros = new List<int>();
+            Console.WriteLine("Introduzca un número");
+            string dato = Console.ReadLine();
+            int num = int.Parse(dato);
+            while (num != 0)
+            {
+                numeros.Add(num);
+                Console.WriteLine("Introduzca un número");
+                dato = Console.ReadLine();
+                num = int.Parse(dato);
+            }
+            int suma = 0;
+            foreach (int n in numeros)
+            {
+                suma += n;
+                Console.WriteLine(n);
+            }
+            Console.WriteLine("Elementos almacenados: " + numeros.Count);
+            float media = suma / numeros.Count;
+            Console.WriteLine("Media de los números: " + media);
         }
 
         static void EjemploColecciones()
