@@ -19,7 +19,7 @@ namespace FundamentosOK
 
         static void NumerosPares()
         {
-            Console.WriteLine("Introduzca un inicio: ");
+            Console.WriteLine("Introduzca un idsfnicio: ");
             string dato = Console.ReadLine();
             int inicio = int.Parse(dato);
             Console.WriteLine("Introduzca un número final");
