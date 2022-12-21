@@ -1,4 +1,5 @@
-﻿using FundamentosOK.Models;
+﻿using FundamentosOK.Helpers;
+using FundamentosOK.Models;
 using System;
 using System.Collections.Generic;
 
@@ -8,14 +9,6 @@ namespace FundamentosOK
     {
         static void Main(string[] args)
         {
-            Persona persona = new Persona();
-            persona.Nombre = "Maria";
-            persona.Apellido = "De la Hoz";
-            persona.Edad = 28;
-            persona.Nacionalidad = Paises.España;
-            Console.WriteLine("Persona " + persona.Nombre
-                + ", Edad: " + persona.Edad);
-
             Console.WriteLine("Metodo MAIN");
             //METODO PRINCIPAL DE EJECUCION
             //REALIZAMOS LA LLAMADA A LOS METODOS 
@@ -31,6 +24,56 @@ namespace FundamentosOK
             //ValidarISBN();
             //EjemploColecciones();
             //SumarNumerosColeccion();
+            //AdministrarTemperaturas();
+            AdministrarTemperaturasHelper();
+        }
+
+        static void AdministrarTemperaturasHelper()
+        {
+            HelperMeses helper = new HelperMeses();
+            foreach (TemperaturaMes mes in helper.Meses)
+            {
+                Console.WriteLine(mes.NombreMes + ", Maxima: "
+                    + mes.Maxima + ", Minima " + mes.Minima + ", Media mensual: "
+                    + mes.GetMediaMes());
+            }
+            Console.WriteLine("Media anual: " + helper.GetMediaAnual());
+            Console.WriteLine("Maxima anual: " + helper.GetMaximaAnual());
+            Console.WriteLine("Minima anual " + helper.GetMinimaAnual());
+        }
+
+        static void AdministrarTemperaturas()
+        {
+            //QUEREMOS GENERAR 12 TEMPERATURAS
+            //ASIGNAMOS VALORES ALEATORIOS AL MAXIMO Y MINIMO
+            //PARA GENERAR VALORES ALEATORIOS DENTRO DE NET SE 
+            //UTILIZA LA CLASE RANDOM
+            //DICHA CLASE TIENE UN METODO Next() QUE NOS 
+            //DEVUELVE UN NUMERO ALEATORIO ENTRE UN MINIMO Y UN MAXIMO
+            Random random = new Random();
+            //ALMACENAREMOS LOS 12 MESES EN UNA COLECCION
+            List<TemperaturaMes> meses = new List<TemperaturaMes>();
+            //REALIZAMOS UN BUCLE DE 1 A 12 PARA IR CREANDO MES A MES
+            //Y AÑADIENDOLO A LA COLECCION
+            for (int i = 1; i <= 12; i++) {
+                //DENTRO DEL BUCLE IREMOS CREANDO UN MES EN CADA VUELTA
+                TemperaturaMes mes = new TemperaturaMes();
+                mes.NombreMes = "Mes " + i;
+                mes.Maxima = random.Next(20, 60);
+                mes.Minima = random.Next(-5, 17);
+                //AÑADIMOS CADA MES A LA COLECCION
+                meses.Add(mes);
+            }
+            //EN ESTE PUNTO YA TENEMOS DOCE MESES.  PODEMOS HACER CUALQUIER
+            //CODIGO, MOSTRARLOS, VER SU MEDIA O LO QUE SE NOS OCURRA...
+            //SIMPLEMENTE VAMOS A RECORRER LOS MESES GUARDADADOS Y MOSTRAMOS SUS DATOS
+            foreach (TemperaturaMes mes in meses)
+            {
+                Console.WriteLine(mes.NombreMes + ", Máxima: "
+                    + mes.Maxima + ", Mínima: " + mes.Minima
+                    + ", Media mensual: " + mes.GetMediaMes());
+            }
+            Console.WriteLine("Fin de programa");
         }
 
         static void SumarNumerosColeccion()

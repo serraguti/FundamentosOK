@@ -22,10 +22,10 @@ namespace FundamentosOK.Models
         //SE UTILIZAN CAMPOS PRIVADOS
         private int _Edad;
 
-        public int Edad { 
-            get { 
+        public int Edad {
+            get {
                 //SE DEVUELVE EL CAMPO PRIVADO
-                return _Edad; 
+                return this._Edad;
             }
             set {
                 //CAMBIAMOS EL CAMPO PRIVADO
@@ -36,13 +36,61 @@ namespace FundamentosOK.Models
                 }
                 else
                 {
-                    _Edad = value;
+                    this._Edad = value;
                 }
             }
         }
 
-        //EN ALGUN MOMENTO, EN OTRO CODIGO, EL PROGRAMADOR
-        //IGUALARA EL DATO DE LA EDAD A ALGO
-        // persona.Edad = 28;
+        //DEBEMOS CREARNOS UN CONJUNTO PARA MANEJAR LA PROPIEDAD
+        //INDIZADA, DICHO CONJUNTO PODRIA SER UN ARRAY O UNA COLECCION
+        private string[] _Descripciones = new string[3];
+        public string this[int indice]
+        {
+            get {
+                return this._Descripciones[indice];
+            }
+            set
+            {
+                this._Descripciones[indice] = value;
+            }
+        }
+
+        public virtual string GetNombreCompleto()
+        {
+            return this.Nombre + " " + this.Apellido;
+        }
+
+        public override string ToString()
+        {
+            return this.Nombre + " " + this.Apellido + ", Edad: " + this.Edad;
+        }
+
+        //POLIMORFISMO
+        public string GetNombreCompleto(bool orden)
+        {
+            if (orden == true)
+            {
+                return this.Apellido + " " + this.Nombre;
+            }
+            else
+            {
+                return this.Nombre + " " + this.Apellido;
+            }
+        }
+
+        public void GetNombreCompleto(int num1, int num2) { }
+        public void GetNombreCompleto(int num1, int num2, int num3) { }
+
+        public Persona()
+        {
+            this.Nacionalidad = Paises.Alemania;
+        }
+
+        public Persona(string nombre, string apellidos)
+        {
+            this.Nombre = nombre;
+            this.Apellido = apellidos;
+        }
+
     }
 }
