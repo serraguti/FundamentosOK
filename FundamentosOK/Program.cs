@@ -35,7 +35,7 @@ namespace FundamentosOK
             car.Marca = "Ferrari";
             car.Modelo = "Testarrossa";
             int opcion = -1;
-            while (opcion != 6)
+            while (opcion != 7)
             {
                 Console.WriteLine("-----------MENU------------");
                 Console.WriteLine("1.- Arrancar");
@@ -43,7 +43,8 @@ namespace FundamentosOK
                 Console.WriteLine("3.- Frenar");
                 Console.WriteLine("4.- Girar");
                 Console.WriteLine("5.- Acelerar personalizado");
-                Console.WriteLine("6.- Salir");
+                Console.WriteLine("6.- Girar personalizado");
+                Console.WriteLine("7.- Salir");
                 Console.WriteLine("Seleccione una opción");
                 opcion = int.Parse(Console.ReadLine());
                 if (opcion == 1)
@@ -64,6 +65,16 @@ namespace FundamentosOK
                     int aceleracion = int.Parse(Console.ReadLine());
                     car.Acelerar(aceleracion);
                 }else if (opcion == 6)
+                {
+                    Console.WriteLine("Introduce una dirección");
+                    Console.WriteLine("0.- Norte");
+                    Console.WriteLine("1.- Sur");
+                    Console.WriteLine("2.- Este");
+                    Console.WriteLine("3.- Oeste");
+                    int idDireccion = int.Parse(Console.ReadLine());
+                    Brujula aux = (Brujula)idDireccion;
+                    car.Girar(aux);
+                }else if (opcion == 7)
                 {
                     Console.WriteLine("Hasta luego");
                 }
