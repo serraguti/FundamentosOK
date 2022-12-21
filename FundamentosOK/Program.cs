@@ -25,7 +25,55 @@ namespace FundamentosOK
             //EjemploColecciones();
             //SumarNumerosColeccion();
             //AdministrarTemperaturas();
-            AdministrarTemperaturasHelper();
+            //AdministrarTemperaturasHelper();
+            ConducirCoche();
+        }
+
+        static void ConducirCoche()
+        {
+            Coche car = new Coche();
+            car.Marca = "Ferrari";
+            car.Modelo = "Testarrossa";
+            int opcion = -1;
+            while (opcion != 6)
+            {
+                Console.WriteLine("-----------MENU------------");
+                Console.WriteLine("1.- Arrancar");
+                Console.WriteLine("2.- Acelerar");
+                Console.WriteLine("3.- Frenar");
+                Console.WriteLine("4.- Girar");
+                Console.WriteLine("5.- Acelerar personalizado");
+                Console.WriteLine("6.- Salir");
+                Console.WriteLine("Seleccione una opción");
+                opcion = int.Parse(Console.ReadLine());
+                if (opcion == 1)
+                {
+                    car.Arrancar();
+                }else if (opcion == 2)
+                {
+                    car.Acelerar();
+                }else if (opcion == 3)
+                {
+                    car.Frenar();
+                }else if (opcion == 4)
+                {
+                    car.Girar();
+                }else if (opcion == 5)
+                {
+                    Console.WriteLine("Aceleración: ");
+                    int aceleracion = int.Parse(Console.ReadLine());
+                    car.Acelerar(aceleracion);
+                }else if (opcion == 6)
+                {
+                    Console.WriteLine("Hasta luego");
+                }
+                else
+                {
+                    Console.WriteLine("Opción incorrecta");
+                }
+                Console.WriteLine(car.ToString());
+            }
+            Console.WriteLine("Fin de programa");
         }
 
         static void AdministrarTemperaturasHelper()
